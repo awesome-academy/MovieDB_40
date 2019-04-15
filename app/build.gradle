@@ -16,13 +16,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    dataBinding{
+    dataBinding {
         enabled = true
     }
     buildTypes {
+        debug {
+            buildConfigField 'String', "ApiKey", Movie_API
+            resValue 'string', "api_key", Movie_API
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "ApiKey", Movie_API
+            resValue 'string', "api_key", Movie_API
         }
     }
 }

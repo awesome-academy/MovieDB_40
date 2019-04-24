@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+                name="viewModel"
+                type="vn.sunasterisk.moviedb_40.ui.home.HomeViewModel"/>
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <View
+                android:id="@+id/viewLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:fitsSystemWindows="true"
+                android:visibility="@{viewModel.isAllLoadedObservable ? View.INVISIBLE : View.VISIBLE }"/>
+
+        <ProgressBar
+                android:id="@+id/progressLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/colorBlack"
+                android:visibility="@{viewModel.isAllLoadedObservable ? View.INVISIBLE : View.VISIBLE}"/>
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBar"
+                android:scrollbars="none"
+                android:theme="@style/Base.ThemeOverlay.AppCompat.Light"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                android:visibility="@{!viewModel.isAllLoadedObservable ? View.INVISIBLE : View.VISIBLE}">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:contentScrim="@color/colorWhite"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:bindViewPager="@{viewModel.topTrendingMoviesObservable}"
+                        app:layout_collapseMode="parallax"/>
+
+                <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_10"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        app:layout_collapseMode="parallax"
+                        app:tabBackground="@drawable/selector_indicator"
+                        app:tabIndicatorHeight="0dp"/>
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?android:actionBarSize"
+                        app:layout_collapseMode="pin"
+                        app:title="@string/app_name"
+                        app:titleTextColor="@android:color/black"
+                        android:layout_marginTop="@dimen/dp_25">
+
+                    <ImageView
+                            android:id="@+id/imageSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="@dimen/dp_10"
+                            android:tint="@color/colorWhite"
+                            android:onClick="@{() -> viewModel.onSearchClick()}"
+                            android:src="@drawable/ic_search"/>
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+                android:id="@+id/nested_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{!viewModel.isAllLoadedObservable ? View.INVISIBLE : View.VISIBLE}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorLightGray">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_category"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:bindCategoryMovie="@{viewModel.categoryMoviesObservable}"
+                        app:bindCategoryTitle="@{viewModel.categoryTitleObservable}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintVertical_bias="1.0"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

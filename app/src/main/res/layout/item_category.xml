@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+</LinearLayout>
+
+
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+
+        <!--<layout>-->
+        <!--<data>-->
+        <!--<variable-->
+        <!--name="viewHolder"-->
+        <!--type="vn.sunasterisk.moviedb_40.ui.genre_category.CategoryAdapter.ViewHolder"/>-->
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<androidx.cardview.widget.CardView-->
+        <!--android:id="@+id/card_poster"-->
+        <!--android:layout_width="@dimen/dp_130"-->
+        <!--android:layout_height="@dimen/dp_160"-->
+        <!--app:cardCornerRadius="@dimen/dp_10"-->
+        <!--app:cardElevation="@dimen/dp_4"-->
+        <!--app:cardUseCompatPadding="true"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"/>-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/image_poster"-->
+        <!--bindSmallImage="@{viewHolder.mPosterPath}"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/colorDarkGray"-->
+        <!--android:scaleType="centerCrop"/>-->
+
+        <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+        <!--</data>-->
+        <!--</layout>-->
